@@ -55,3 +55,14 @@ exports.addDestination = function (req, res, next) {
       });
   });
 };
+
+exports.returnAllDestinations = function (req, res, next) {
+  Destination.find(function (err, destinations) {
+    if (err) return next(err);
+    res.json({
+      status: "success",
+      message: "Destinations retrieved successfully",
+      data: destinations,
+    });
+  });
+};
