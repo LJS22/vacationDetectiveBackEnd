@@ -1,0 +1,38 @@
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+
+const holidaySchema = new Schema({
+  ref: User,
+  destination: {
+    type: String,
+    required: true,
+    unique: false,
+  },
+  accommodation: {
+    type: Array,
+    min: 1,
+    max: 5,
+    required: true,
+    items: {
+      type: String,
+    },
+  },
+  restaurants: {
+    type: Array,
+    max: 5,
+    required: false,
+    items: {
+      type: String,
+    },
+  },
+  activities: {
+    type: Array,
+    max: 10,
+    required: false,
+    items: {
+      type: String,
+    },
+  },
+});
+
+const Holiday = (module.exports = mongoose.model("Holiday", holidaySchema));
