@@ -1,8 +1,12 @@
 const mongoose = require("mongoose");
+const User = require("./user");
 const Schema = mongoose.Schema;
 
 const holidaySchema = new Schema({
-  ref: User,
+  addedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: User,
+  },
   destination: {
     type: String,
     required: true,
@@ -36,3 +40,11 @@ const holidaySchema = new Schema({
 });
 
 const Holiday = (module.exports = mongoose.model("Holiday", holidaySchema));
+
+//Example of how to find holiday by specific user
+//Look at mongoose populate method
+// Holiday.find({})
+// .populate('addedBy')
+// .exec(function(err, post) {
+//     do stuff with holiday
+// });

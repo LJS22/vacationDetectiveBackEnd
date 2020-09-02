@@ -1,8 +1,11 @@
 const apiRouter = require("express").Router();
-// const { addUser } = require("../controllers/user");
+const { addDestination } = require("../controllers/destinations");
+const { addUser } = require("../controllers/user");
 
 apiRouter.route("/");
 
-// apiRouter.route("/users").post(addUser);
+apiRouter.route("/addUser").post(addUser);
+
+apiRouter.route("/addDestination").post(addDestination);
 
 module.exports = apiRouter;
