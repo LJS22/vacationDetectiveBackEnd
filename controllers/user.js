@@ -2,7 +2,7 @@ const User = require("../models/user");
 
 exports.addUser = function (req, res, next) {
   const { firstName, lastName, userName, email, password } = req.body;
-
+  console.log(req.body);
   const newUser = new User({
     firstName,
     lastName,
@@ -29,24 +29,4 @@ exports.returnAllUsers = function (req, res, next) {
       data: users,
     });
   });
-};
-
-sendData = async (e) => {
-  const response = await fetch(
-    "http://localhost:4500/vacationdetective/v1/addUser",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        userName: this.state.userName,
-        email: this.state.email,
-        password: this.state.password,
-      }),
-    }
-  );
-  e.preventDefault();
-  const data = await response.json();
-  console.log(data);
 };
