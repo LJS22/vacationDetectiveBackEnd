@@ -67,9 +67,9 @@ exports.signInAuthentication = function (req, res, next) {
   let username = req.body.username;
   let password = req.body.password;
   User.findOne({ $or: [{ email: username }, { userName: username }] }).then(
-    async (user) => {
+    (user) => {
       if (user) {
-        await bcrypt.compare(password, user.password, function (err, result) {
+        bcrypt.compare(password, user.password, function (err, result) {
           if (err) {
             res.json({
               error: err.message,
