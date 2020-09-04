@@ -25,11 +25,10 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
-    minlength: 8,
-    maxlength: 20,
     required: true,
     select: false,
     bcrypt: true,
