@@ -28,8 +28,6 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    minlength: 8,
-    maxlength: 20,
     required: true,
     select: false,
     bcrypt: true,
@@ -46,3 +44,4 @@ const userSchema = new Schema({
 // });
 
 const User = (module.exports = mongoose.model("User", userSchema));
+
