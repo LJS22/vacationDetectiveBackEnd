@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 exports.addUser = async function (req, res, next) {
   let { firstName, lastName, userName, email, password } = req.body;
 
-  const hash = await bcrypt.hashSync(password, 10);
+  const hash = await bcrypt.hash(password, 10);
 
   const newUser = new User({
     firstName,
@@ -67,9 +67,10 @@ exports.signInAuthentication = function (req, res, next) {
   let username = req.body.username;
   let password = req.body.password;
   User.findOne({ $or: [{ email: username }, { userName: username }] }).then(
-    async (user) => {
+    (user) => {
       if (user) {
-        await bcrypt.compare(password, user.password, function (err, result) {
+        console.log(user);
+        bcrypt.compare(password, user.password, function (err, result) {
           if (err) {
             res.json({
               error: err.message,
