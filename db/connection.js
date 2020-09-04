@@ -11,6 +11,8 @@ const mongoDB = `mongodb+srv://${user}:${pass}@${dbCluster}/${dbName}?retryWrite
 mongoose.connect(mongoDB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  autoIndex: true,
+  useCreateIndex: true,
 });
 
 const db = mongoose.connection.on("error", (error) => {
